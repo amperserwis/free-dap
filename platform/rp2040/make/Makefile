@@ -8,10 +8,12 @@ BIN = free_dap_rp2040
 CC      = arm-none-eabi-gcc
 OBJCOPY = arm-none-eabi-objcopy
 SIZE    = arm-none-eabi-size
-BIN2UF2 = bin2uf2
+## BIN2UF2 = bin2uf2
+BIN2UF2 = ./bin2uf2.exe
 
 ifeq ($(OS), Windows_NT)
-  MKDIR = gmkdir
+  ## MKDIR = gmkdir
+  MKDIR = mkdir
 else
   MKDIR = mkdir
 endif
@@ -33,6 +35,7 @@ INCLUDES += \
   -I../include \
   -I../usb \
   -I../../.. \
+  -I../generated \
   -I..
 
 SRCS += \
@@ -45,6 +48,7 @@ SRCS += \
   ../usb/usb_winusb.c \
   ../usb_descriptors.c \
   ../startup_rp2040.c \
+  ../ws2812_pio.c \
   ../../../dap.c \
 
 DEFINES += \

@@ -8,6 +8,8 @@
 #include "hal_gpio.h"
 
 /*- Definitions -------------------------------------------------------------*/
+#define DAP_STATUS_USE_WS2812
+
 HAL_GPIO_PIN(SWCLK_TCK,      0, 11, sio_11)
 HAL_GPIO_PIN(SWDIO_TMS,      0, 12, sio_12)
 HAL_GPIO_PIN(TDI,            0, 13, sio_13)
@@ -15,7 +17,11 @@ HAL_GPIO_PIN(TDO,            0, 14, sio_14)
 HAL_GPIO_PIN(nRESET,         0, 15, sio_15)
 
 HAL_GPIO_PIN(VCP_STATUS,     0, 2, sio_2);
+#ifdef DAP_STATUS_USE_WS2812
+HAL_GPIO_PIN(DAP_STATUS2,    0, 25, sio_25);
+#else
 HAL_GPIO_PIN(DAP_STATUS,     0, 25, sio_25);
+#endif // DAP_STATUS_USE_WS2812
 
 HAL_GPIO_PIN(UART_TX,        0, 0, uart0_tx)
 HAL_GPIO_PIN(UART_RX,        0, 1, uart0_rx)
