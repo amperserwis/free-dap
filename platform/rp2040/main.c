@@ -12,6 +12,7 @@
 #include "uart.h"
 #include "dap.h"
 #include "dap_config.h"
+#include "ws2812_pio.h"
 
 /*- Definitions -------------------------------------------------------------*/
 #define USB_BUFFER_SIZE        64
@@ -355,6 +356,9 @@ int main(void)
   usb_cdc_init();
   usb_hid_init();
   serial_number_init();
+#ifdef DAP_STATUS_USE_WS2812
+  pio_init(F_CPU);
+#endif
 
   app_status_timeout = STATUS_TIMEOUT;
 
